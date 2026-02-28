@@ -1,8 +1,10 @@
 # JS8Chess
 
+WARNING UNTESTED
+
 A lightweight UCI chess engine bridge that lets two radio operators play chess over [JS8Call](https://github.com/JS8Call-improved).
 
-JS8Chess has no AI — it acts as a proxy for your remote opponent, transmitting your moves over HF radio and waiting for theirs.
+JS8Chess allows you to use a chess GUI (Arena, CuteChess, Banksia or any UCI-compatible GUIs) to play with a remote opponent, transmitting your moves using JS8 over HF radio and waiting for theirs.
 
 ```
 Chess GUI (UCI)
