@@ -1,7 +1,38 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
-.pytest_cache/
+*.pyd
 *.egg-info/
 dist/
 build/
+.venv/
+venv/
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project
+.claude/
