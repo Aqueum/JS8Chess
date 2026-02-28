@@ -436,7 +436,7 @@ class JS8ChessEngine:
     # ------------------------------------------------------------------
 
     def _handle_new_proposal(self, msg: proto.OTAMessage) -> None:
-        """Remote is proposing a new game.  Accept automatically."""
+        """Remote is proposing a new game."""
         with self._state_lock:
             if self._state == EngineState.GAME_ACTIVE:
                 log.warning("NEW proposal ignored: game already active")
@@ -444,6 +444,16 @@ class JS8ChessEngine:
             self._state = EngineState.AWAITING_PROPOSAL
 
         log.info("NEW proposal received: remote wants to play as %s", msg.color)
+
+        if not self._cfg.auto_accept:
+            self._uci_out(
+                f"info string Game proposal from {msg.from_call} ignored "
+                f"(auto_accept is false in config)"
+            )
+            log.info("Proposal ignored: auto_accept disabled")
+            with self._state_lock:
+                self._state = EngineState.NO_GAME
+            return
 
         # The acceptance timestamp becomes the canonical game ID
         timestamp = proto.now_timestamp()

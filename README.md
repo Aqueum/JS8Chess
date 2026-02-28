@@ -50,17 +50,20 @@ Run `python3 js8chess.py` once to generate `~/.js8chess/config.json`, then edit 
 
 ```json
 {
-  "local_callsign": "MM7MMU",
-  "remote_callsign": "MM7XYZ",
+  "local_callsign": "CALLSIGN",
+  "remote_callsign": "SWL",
   "js8_host": "127.0.0.1",
   "js8_port": 2442,
   "ack_wait_seconds": 60,
   "move_response_wait_seconds": 120,
-  "max_retries": 3
+  "max_retries": 3,
+  "auto_accept": true
 }
 ```
 
-Edit it to match your callsign, your opponent's callsign, and your JS8Call API address.
+Set `local_callsign` to your own callsign and `remote_callsign` to your opponent's.
+
+Set `auto_accept` to `false` if you don't want JS8Chess to automatically accept incoming game proposals — it will log them and ignore them instead.
 
 ### 2. Enable JS8Call TCP API
 

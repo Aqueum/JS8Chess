@@ -11,13 +11,14 @@ CONFIG_DIR = Path.home() / ".js8chess"
 CONFIG_FILE = CONFIG_DIR / "config.json"
 
 DEFAULT_CONFIG: dict = {
-    "local_callsign": "MM7MMU",
-    "remote_callsign": "MM7XYZ",
+    "local_callsign": "CALLSIGN",
+    "remote_callsign": "SWL",
     "js8_host": "127.0.0.1",
     "js8_port": 2442,
     "ack_wait_seconds": 60,
     "move_response_wait_seconds": 120,
     "max_retries": 3,
+    "auto_accept": True,
 }
 
 
@@ -30,6 +31,7 @@ class Config:
     ack_wait_seconds: int
     move_response_wait_seconds: int
     max_retries: int
+    auto_accept: bool
 
 
 def load_config() -> Config:
@@ -56,4 +58,5 @@ def load_config() -> Config:
         ack_wait_seconds=int(data["ack_wait_seconds"]),
         move_response_wait_seconds=int(data["move_response_wait_seconds"]),
         max_retries=int(data["max_retries"]),
+        auto_accept=bool(data["auto_accept"]),
     )

@@ -20,7 +20,9 @@ class TestLoadConfig:
         cfg = load_config()
         config_file = tmp_config_dir / "config.json"
         assert config_file.exists()
-        assert cfg.local_callsign == DEFAULT_CONFIG["local_callsign"].upper()
+        assert cfg.local_callsign == "CALLSIGN"
+        assert cfg.remote_callsign == "SWL"
+        assert cfg.auto_accept is True
 
     def test_loads_custom_values(self, tmp_config_dir):
         config_file = tmp_config_dir / "config.json"
@@ -32,6 +34,7 @@ class TestLoadConfig:
             "ack_wait_seconds": 30,
             "move_response_wait_seconds": 90,
             "max_retries": 5,
+            "auto_accept": False,
         }
         config_file.write_text(json.dumps(custom))
         cfg = load_config()
@@ -42,6 +45,13 @@ class TestLoadConfig:
         assert cfg.ack_wait_seconds == 30
         assert cfg.move_response_wait_seconds == 90
         assert cfg.max_retries == 5
+        assert cfg.auto_accept is False
+
+    def test_auto_accept_defaults_true(self, tmp_config_dir):
+        config_file = tmp_config_dir / "config.json"
+        config_file.write_text(json.dumps({"local_callsign": "G0ABC", "remote_callsign": "G0DEF"}))
+        cfg = load_config()
+        assert cfg.auto_accept is True
 
     def test_callsigns_uppercased(self, tmp_config_dir):
         config_file = tmp_config_dir / "config.json"
