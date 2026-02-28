@@ -32,13 +32,21 @@ cd JS8Chess
 pip install chess
 ```
 
+To verify it works:
+
+```bash
+python3 js8chess.py
+```
+
+You should see JS8Chess waiting for UCI commands. Type `uci` and press Enter — it should reply with `uciok`. Type `quit` to exit.
+
 ---
 
 ## Setup
 
 ### 1. Configure
 
-On first run JS8Chess creates `~/.js8chess/config.json` with defaults:
+Run `python3 js8chess.py` once to generate `~/.js8chess/config.json`, then edit it:
 
 ```json
 {
