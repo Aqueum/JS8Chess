@@ -7,8 +7,8 @@ from js8chess.protocol import (
     fmt_resync_request, fmt_resync_ok,
 )
 
-LOCAL = "MM7MMU"
-REMOTE = "MM7XYZ"
+LOCAL = "CALLSIGN"
+REMOTE = "SWL"
 
 
 # ---------------------------------------------------------------------------
@@ -137,7 +137,7 @@ class TestParseUnrelated:
         assert msg is None
 
     def test_unrelated_traffic(self):
-        msg = _parse("CQ CQ DE MM7XYZ")
+        msg = _parse("CQ CQ DE SWL")
         assert msg is None
 
 

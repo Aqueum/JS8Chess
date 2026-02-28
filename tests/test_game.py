@@ -21,8 +21,8 @@ def tmp_pgn_dir(tmp_path):
 def session(tmp_pgn_dir):
     return GameSession(
         game_id="202506011430",
-        local_callsign="MM7MMU",
-        remote_callsign="MM7XYZ",
+        local_callsign="CALLSIGN",
+        remote_callsign="SWL",
         local_color=chess.WHITE,
     )
 
@@ -37,14 +37,14 @@ class TestGameSessionInit:
 
     def test_pgn_headers(self, session):
         headers = session._pgn_game.headers
-        assert headers["White"] == "MM7MMU"
-        assert headers["Black"] == "MM7XYZ"
+        assert headers["White"] == "CALLSIGN"
+        assert headers["Black"] == "SWL"
         assert headers["Event"] == "JS8Chess Radio Game"
         assert headers["Date"] == "2025.06.01"
         assert headers["Result"] == "*"
 
     def test_pgn_path_format(self, session, tmp_pgn_dir):
-        expected = tmp_pgn_dir / "MM7XYZ-202506011430.pgn"
+        expected = tmp_pgn_dir / "SWL-202506011430.pgn"
         assert session.pgn_path == expected
 
 
@@ -106,8 +106,8 @@ class TestTurnTracking:
     def test_black_local_awaits_remote_first(self, tmp_pgn_dir):
         black_session = GameSession(
             game_id="202506011430",
-            local_callsign="MM7MMU",
-            remote_callsign="MM7XYZ",
+            local_callsign="CALLSIGN",
+            remote_callsign="SWL",
             local_color=chess.BLACK,
         )
         # Black's turn is second; initially it is White's (remote) turn
@@ -139,7 +139,7 @@ class TestPGNPersistence:
         session.apply_move("e2e4")
         content = session.pgn_path.read_text()
         assert "JS8Chess Radio Game" in content
-        assert "MM7MMU" in content
+        assert "CALLSIGN" in content
 
 
 class TestResync:
@@ -164,7 +164,7 @@ class TestResync:
         assert session.expected_move_num == 1
 
     def test_restore_missing_pgn_fails(self, tmp_pgn_dir):
-        s = GameSession("202506011430", "MM7MMU", "MM7XYZ", chess.WHITE)
+        s = GameSession("202506011430", "CALLSIGN", "SWL", chess.WHITE)
         # PGN file doesn't exist yet
         ok = s.restore_to_ply(3)
         assert not ok
