@@ -22,7 +22,13 @@ Chess GUI (UCI)
 - [JS8Call](https://github.com/JS8Call-improved) running with its TCP API enabled (default port 2442)
 - A UCI-compatible chess GUI (Arena, CuteChess, Banksia, etc.)
 
+---
+
+## Installation
+
 ```bash
+git clone https://github.com/Aqueum/JS8Chess.git
+cd JS8Chess
 pip install chess
 ```
 
