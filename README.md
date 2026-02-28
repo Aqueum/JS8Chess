@@ -1,6 +1,6 @@
 # JS8Chess
 
-A lightweight UCI chess engine bridge that lets two radio operators play chess over [JS8Call](http://js8call.com/).
+A lightweight UCI chess engine bridge that lets two radio operators play chess over [JS8Call](https://github.com/JS8Call-improved).
 
 JS8Chess has no AI — it acts as a proxy for your remote opponent, transmitting your moves over HF radio and waiting for theirs.
 
@@ -19,7 +19,7 @@ Chess GUI (UCI)
 ## Requirements
 
 - Python 3.8+
-- [JS8Call](http://js8call.com/) running with its TCP API enabled (default port 2442)
+- [JS8Call](https://github.com/JS8Call-improved) running with its TCP API enabled (default port 2442)
 - A UCI-compatible chess GUI (Arena, CuteChess, Banksia, etc.)
 
 ```bash
